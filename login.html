@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Car Wash</title>
+    <title>Login | Car Wash</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
 
         body {
             background: #f7f7f7;
@@ -24,24 +19,22 @@
             height: 100vh;
         }
 
-        .register-container {
-            width: 400px;
+        .login-container {
+            width: 380px;
             background: #fff;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
         }
 
-        .register-container h2 {
+        .login-container h2 {
             text-align: center;
             margin-bottom: 20px;
             font-weight: 600;
             color: #333;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+        .form-group { margin-bottom: 15px; }
 
         .form-group label {
             font-size: 14px;
@@ -58,9 +51,9 @@
             font-size: 14px;
         }
 
-        .btn-register {
+        .btn-login {
             width: 100%;
-            background: #28a745;
+            background: #007bff;
             color: #fff;
             border: none;
             padding: 12px;
@@ -71,43 +64,29 @@
             transition: 0.3s;
         }
 
-        .btn-register:hover {
-            background: #1e7e34;
-        }
+        .btn-login:hover { background: #0056b3; }
 
-        .login-text {
+        .register-text {
             text-align: center;
             margin-top: 15px;
             font-size: 14px;
         }
 
-        .login-text a {
+        .register-text a {
             color: #007bff;
             text-decoration: none;
             font-weight: 500;
         }
 
-        .login-text a:hover {
-            text-decoration: underline;
-        }
+        .register-text a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
-    <div class="register-container">
-        <h2>Create Account</h2>
+    <div class="login-container">
+        <h2>Login</h2>
 
-        <form id="registerForm">
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="mobile">Mobile Number</label>
-                <input type="text" id="mobile" placeholder="09xxxxxxxxx" required>
-            </div>
-
+        <form id="loginForm">
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" placeholder="Enter your email" required>
@@ -118,27 +97,24 @@
                 <input type="password" id="password" placeholder="Enter your password" required>
             </div>
 
-            <button type="submit" class="btn-register">Register</button>
+            <button type="submit" class="btn-login">Login</button>
         </form>
 
-        <p class="login-text">
-            Already have an account? <a href="login.html">Login</a>
+        <p class="register-text">
+            Don't have an account? <a href="register.html">Register</a>
         </p>
     </div>
 
     <script>
-        // Example JS to connect to backend
-        document.getElementById("registerForm").addEventListener("submit", async function(e) {
+        document.getElementById("loginForm").addEventListener("submit", async function(e) {
             e.preventDefault();
 
             const data = {
-                name: document.getElementById("fullName").value,
-                mobile: document.getElementById("mobile").value,
                 email: document.getElementById("email").value,
-                password: document.getElementById("password").value,
+                password: document.getElementById("password").value
             };
 
-            const response = await fetch("http://localhost:27017/register", {
+            const response = await fetch("http://localhost:5000/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
@@ -146,6 +122,10 @@
 
             const result = await response.json();
             alert(result.message);
+
+            if (result.message === "Login successful!") {
+                window.location.href = "index.html"; 
+            }
         });
     </script>
 

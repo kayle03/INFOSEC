@@ -6,5 +6,24 @@
     "express": "^5.2.1",
     "mongodb": "^7.0.0",
     "mongoose": "^9.0.0"
-  }
+  },
+  "name": "car-wash-website-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "connetor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kayle03/INFOSEC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kayle03/INFOSEC/issues"
+  },
+  "homepage": "https://github.com/kayle03/INFOSEC#readme"
 }
