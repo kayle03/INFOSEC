@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Car Wash</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-container {
+            width: 400px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .btn-register {
+            width: 100%;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-register:hover {
+            background: #1e7e34;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-text a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Create Account</h2>
+
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" id="mobile" placeholder="09xxxxxxxxx" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn-register">Register</button>
+        </form>
+
+        <p class="login-text">
+            Already have an account? <a href="login.html">Login</a>
+        </p>
+    </div>
+
+    <script>
+        // Example JS to connect to backend
+        document.getElementById("registerForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const data = {
+                name: document.getElementById("fullName").value,
+                mobile: document.getElementById("mobile").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+            };
+
+            const response = await fetch("http://localhost:27017/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            alert(result.message);
+        });
+    </script>
+
+</body>
+</html>
